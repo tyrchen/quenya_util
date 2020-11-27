@@ -3,9 +3,9 @@ defmodule QuenyaUtil.RequestHelper do
   Request helper functions
   """
 
-  def validate_required(v, required?, location) do
+  def validate_required(v, required?, position) do
     case {required?, v} do
-      {true, nil} -> raise(Plug.BadRequestError, "#{v} does not exist in request #{location}")
+      {true, nil} -> raise(Plug.BadRequestError, "#{v} does not exist in request #{position}")
       _ -> v
     end
   end
@@ -23,4 +23,10 @@ defmodule QuenyaUtil.RequestHelper do
   end
 
   def get_param(conn, name, "cookie"), do: conn.cookies[name]
+
+  def get_content_type(conn) do
+    v = get_param(conn, "content-type", "header")
+    [result | _] = String.split(v, ";")
+    result
+  end
 end
