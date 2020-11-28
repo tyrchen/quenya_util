@@ -22,9 +22,10 @@ defmodule QuenyaUtil.Plug.RoutePlug do
 
   @spec init(keyword()) :: keyword()
   def init(opts) do
-    # if not opts[:handlers] or Enum.empty?(opts[:handlers]) do
-    #   raise "You must define at least one handler"
-    # end
+    handlers = opts[:handlers] || []
+    if Enum.empty?(handlers) do
+      raise "You must define at least one handler"
+    end
 
     opts
   end
