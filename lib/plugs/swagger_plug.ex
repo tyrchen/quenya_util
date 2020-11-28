@@ -10,7 +10,8 @@ defmodule QuenyaUtil.Plug.SwaggerPlug do
       plug Plug.static, at: "/public", from: {:quenya_util, "priv/swagger"}
 
       # after dispatch
-      get "/swagger", to: QuenyaUtil.Plug.Swagger, init_opts: [spec: "/swagger/main.yml"]
+      get "/swagger", to: QuenyaUtil.Plug.SwaggerPlug, init_opts: [spec: "/swagger/main.json"]
+      get "/swagger/main.json", to: QuenyaUtil.Plug.SwaggerPlug, init_opts: [app: :todo]
 
   """
 
@@ -87,8 +88,22 @@ defmodule QuenyaUtil.Plug.SwaggerPlug do
 
   @spec call(Plug.Conn.t(), keyword()) :: Plug.Conn.t()
   def call(conn, opts) do
-    spec = opts[:spec]
-    body = EEx.eval_string(@template, spec: spec)
-    send_resp(conn, 200, body)
+    case String.ends_with?(conn.request_path, "main.json") do
+      true ->
+        filename = Path.join(Application.app_dir(opts[:app]), "priv/spec/main.yml")
+        {:ok, spec} = QuenyaUtil.Parser.parse(filename)
+        body = Jason.encode!(spec)
+        etag = :crypto.hash(:md5, body) |> Base.encode16(case: :lower)
+
+        conn
+        |> put_resp_header("etag", etag)
+        |> send_resp(200, body)
+
+      _ ->
+        spec = opts[:spec]
+        body = EEx.eval_string(@template, spec: spec)
+        send_resp(conn, 200, body)
+    end
+
   end
 end

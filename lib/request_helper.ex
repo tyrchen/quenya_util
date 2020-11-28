@@ -57,5 +57,13 @@ defmodule QuenyaUtil.RequestHelper do
     String.split(v, ",")
   end
 
+  defp normalize_param(v, %{"type" => "integer"} = _schema) do
+    case Integer.parse(v) do
+      {r, ""} -> r
+      _ -> v
+    end
+
+  end
+
   defp normalize_param(v, _schema), do: v
 end

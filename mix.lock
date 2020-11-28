@@ -5,4 +5,6 @@
   "plug_crypto": {:hex, :plug_crypto, "1.2.0", "1cb20793aa63a6c619dd18bb33d7a3aa94818e5fd39ad357051a67f26dfa2df6", [:mix], [], "hexpm", "a48b538ae8bf381ffac344520755f3007cc10bd8e90b240af98ea29b69683fc2"},
   "telemetry": {:hex, :telemetry, "0.4.2", "2808c992455e08d6177322f14d3bdb6b625fbcfd233a73505870d8738a2f4599", [:rebar3], [], "hexpm", "2d1419bd9dda6a206d7b5852179511722e2b18812310d304620c7bd92a13fcef"},
   "uuid": {:hex, :uuid, "1.1.8", "e22fc04499de0de3ed1116b770c7737779f226ceefa0badb3592e64d5cfb4eb9", [:mix], [], "hexpm", "c790593b4c3b601f5dc2378baae7efaf5b3d73c4c6456ba85759905be792f2ac"},
+  "yamerl": {:hex, :yamerl, "0.8.0", "8214cfe16bbabe5d1d6c14a14aea11c784b9a21903dd6a7c74f8ce180adae5c7", [:rebar3], [], "hexpm", "010634477bf9c208a0767dcca89116c2442cf0b5e87f9c870f85cd1c3e0c2aab"},
+  "yaml_elixir": {:hex, :yaml_elixir, "2.5.0", "45de762be6d75fa5a8b5f44ddff8c30f64c26526eab5b1d72e36d616007b7796", [:mix], [{:yamerl, "~> 0.7", [hex: :yamerl, repo: "hexpm", optional: false]}], "hexpm", "80fe4e43f05582f2a90f2dcd73fc6171fbd65f2e6836f71fe4ce2154ef358c36"},
 }

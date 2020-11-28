@@ -17,4 +17,8 @@ defmodule QuenyaUtil.FormatValidator do
   def validate("image_uri", data) do
     validate("uri", data)
   end
+
+  def validate(_format, _data) do
+    true
+  end
 end
