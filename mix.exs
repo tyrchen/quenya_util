@@ -14,7 +14,7 @@ defmodule QuenyaUtil.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :crypto]
     ]
   end
 
@@ -24,7 +24,8 @@ defmodule QuenyaUtil.MixProject do
       {:yaml_elixir, "~> 2.5"},
       {:plug, "~>1.11"},
       {:jason, "~> 1.2"},
-      {:uuid, "~> 1.0"}
+      {:uuid, "~> 1.0"},
+      {:deep_merge, "~> 1.0"}
     ]
   end
 end
